@@ -1,6 +1,5 @@
 'use strict';
 const sharp = require('sharp');
-const PluginError = require('plugin-error');
 
 const defaultOptions = {
   quality: 90,
@@ -13,7 +12,5 @@ module.exports = options => async buffer => {
   return await sharp(buffer)
     .avif(Object.assign(defaultOptions, options))
     .toBuffer()
-    .catch((err) => {
-      callback(new PluginError('imagemin-avif', err));
-    });
+    .catch(error => throw error);
 };
