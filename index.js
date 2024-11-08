@@ -12,5 +12,5 @@ module.exports = options => async buffer => {
   return await sharp(buffer)
     .avif(Object.assign(defaultOptions, options))
     .toBuffer()
-    .catch(error => throw error);
+    .catch(error => { throw error });
 };
